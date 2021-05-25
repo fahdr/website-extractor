@@ -20,9 +20,11 @@ for item in sku_list:
     img_url=driver.find_element_by_css_selector('img.magnifier-image').get_attribute('src')
     item_attr.append({'item_title':item_title,'item_price_sale':item_price_sale,'item_price':item_price,'img_url':img_url})
 
-#shipping=driver.find_element_by_css_selector
+shipping_price=driver.find_element_by_css_selector('div.product-shipping-price span.bold').text
+shipping_method=driver.find_element_by_css_selector('span.product-shipping-info').text
+delivery_date=driver.find_element_by_css_selector('span.product-shipping-delivery span').text
 
-print(dict(title=title,reviews=reviews,orders=orders,rating=rating,items=item_attr))
+print(dict(title=title,reviews=reviews,orders=orders,rating=rating,shipping_method=shipping_method,shipping_price=shipping_price,delivery_date=delivery_date,items=item_attr))
     
 
 
