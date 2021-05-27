@@ -8,6 +8,5 @@ shipping_price=driver.find_element_by_css_selector('div.product-shipping-price s
 shipping_method=driver.find_element_by_css_selector('span.product-shipping-info').text
 delivery_date=driver.find_element_by_css_selector('span.product-shipping-delivery span').text
 
-print(dict(shipping_price=shipping_price,shipping_method=shipping_method,delivery_date=delivery_date))
 
 

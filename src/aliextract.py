@@ -1,6 +1,6 @@
 from selenium import webdriver
 
-def extract_product(product_id):
+def ExtractProduct(product_id):
     DRIVER_PATH = '/Users/fahdrahman/Documents/ali-scrape-selenium/chromedriver'
     driver = webdriver.Chrome(executable_path=DRIVER_PATH)
     driver.get('https://www.aliexpress.com/item/'+str(product_id)+'.html')
@@ -20,14 +20,24 @@ def extract_product(product_id):
         item_price_sale=driver.find_element_by_css_selector('div.product-price-current span.product-price-value').text
         item_price=driver.find_element_by_css_selector('div.product-price-original span.product-price-value').text
         img_url=driver.find_element_by_css_selector('img.magnifier-image').get_attribute('src')
-        item_attr.append({'item_title':item_title,'item_price_sale':item_price_sale,'item_price':item_price,'img_url':img_url})
+        item_attr.append({'itemTitle':item_title,'itemSalePrice':item_price_sale,'itemPrice':item_price,'itemImgUrl':img_url})
 
+      
     shipping_price=driver.find_element_by_css_selector('div.product-shipping-price span.bold').text
     shipping_method=driver.find_element_by_css_selector('span.product-shipping-info').text
     delivery_date=driver.find_element_by_css_selector('span.product-shipping-delivery span').text
+    newdict=dict(
+    _id=product_id,
+    title=title,
+    reviewCount=reviews,
+    orders=orders,
+    rating=rating,
+    skuItems=item_attr,
+    )
+
     print(dict(title=title,reviews=reviews,orders=orders,rating=rating,shipping_method=shipping_method,shipping_price=shipping_price,delivery_date=delivery_date,items=item_attr))
-    return (dict(title=title,reviews=reviews,orders=orders,rating=rating,shipping_method=shipping_method,shipping_price=shipping_price,delivery_date=delivery_date,items=item_attr))
-    
+    #return (dict(title=title,reviews=reviews,orders=orders,rating=rating,shipping_method=shipping_method,shipping_price=shipping_price,delivery_date=delivery_date,items=item_attr))
+    return newdict
 
 
 

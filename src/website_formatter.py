@@ -1,6 +1,9 @@
 from selenium.webdriver.remote.utils import format_json
 
 
+def formatter(websiteName,product):
+    websites[websiteName](product)
+
 def kpophearts(product):
     item_category=['lomo','neklace','tshirt']
     team_names=['bts','twice', 'red velvet']
@@ -19,3 +22,5 @@ def kpophearts(product):
         formatted_product_list.append(title=title,team=team,pic=pic,price=price,category=category)
         
     return formatted_product_list
+
+websites={'kpophearts':kpophearts,}
