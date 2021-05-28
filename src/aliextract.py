@@ -35,8 +35,6 @@ def ExtractProduct(product_id):
     skuItems=item_attr,
     )
 
-    print(dict(title=title,reviews=reviews,orders=orders,rating=rating,shipping_method=shipping_method,shipping_price=shipping_price,delivery_date=delivery_date,items=item_attr))
-    #return (dict(title=title,reviews=reviews,orders=orders,rating=rating,shipping_method=shipping_method,shipping_price=shipping_price,delivery_date=delivery_date,items=item_attr))
     return newdict
 
 
