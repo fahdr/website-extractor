@@ -14,7 +14,7 @@ class Extract(Resource):
         extractedProduct.websiteProducts=formatter(website,extractedProduct)
         extractedProduct.save()
         #return info
-        return(extractedProduct)
+        return(extractedProduct.to_json())
     
     def put(self):
         #get info

@@ -27,7 +27,7 @@ def ExtractProduct(product_id):
     shipping_method=driver.find_element_by_css_selector('span.product-shipping-info').text
     delivery_date=driver.find_element_by_css_selector('span.product-shipping-delivery span').text
     newdict=dict(
-    _id=product_id,
+    skuID=product_id,
     title=title,
     reviewCount=reviews,
     orders=orders,

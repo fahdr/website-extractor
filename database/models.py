@@ -37,7 +37,7 @@ class KpopheartProducts(EmbeddedDocument):
 
 
 class AliExProduct(Document):
-    _id=IntField(max_length=120, required=True,)
+    skuID=IntField(max_length=120, required=True, primary_key=True)
     title=StringField(required=True)
     reviewCount=StringField(max_length=120)
     orders=StringField(max_length=120)
@@ -47,7 +47,7 @@ class AliExProduct(Document):
     websiteProducts=ListField(EmbeddedDocumentField(KpopheartProducts))
     
 class DraftAliExProduct(Document):
-    _id=IntField(max_length=120, required=True,)
+    skuID=IntField(max_length=120, required=True, primary_key=True)
     title=StringField(required=True)
     reviewCount=StringField(max_length=120)
     orders=StringField(max_length=120)
