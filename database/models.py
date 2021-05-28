@@ -28,8 +28,12 @@ class WebsiteProducts(EmbeddedDocument):
     images=ListField(StringField(max_length=30))
     meta = {'allow_inheritance': True}
 
-class KpopheartProducts(WebsiteProducts):
+class KpopheartProducts(EmbeddedDocument):
     team=StringField(max_length=120)
+    title=StringField()
+    pic=StringField()
+    price=StringField(max_length=120)
+    category=ListField(StringField(max_length=30))
 
 
 class AliExProduct(Document):
@@ -40,7 +44,7 @@ class AliExProduct(Document):
     rating=StringField(max_length=120)
     shipping=ListField(EmbeddedDocumentField(Shipping))
     skuItems=ListField(EmbeddedDocumentField(SkuItems))
-    websiteProducts=ListField(EmbeddedDocumentField(WebsiteProducts))
+    websiteProducts=ListField(EmbeddedDocumentField(KpopheartProducts))
     
 class DraftAliExProduct(Document):
     _id=IntField(max_length=120, required=True,)
@@ -50,4 +54,4 @@ class DraftAliExProduct(Document):
     rating=StringField(max_length=120)
     shipping=ListField(EmbeddedDocumentField(Shipping))
     skuItems=ListField(EmbeddedDocumentField(SkuItems))
-    websiteProducts=ListField(EmbeddedDocumentField(WebsiteProducts))
+    websiteProducts=ListField(EmbeddedDocumentField(KpopheartProducts))
