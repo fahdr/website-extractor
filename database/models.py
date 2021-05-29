@@ -7,7 +7,20 @@ from mongoengine.fields import (
     IntField,
     EmbeddedDocumentField,
 )
-    
+
+class Users(EmbeddedDocument):
+    name=StringField()
+    email=StringField()
+    phone=StringField()
+
+class Websites(Document):
+    name=StringField(max_length=120, primary_key=True)
+    users=ListField(EmbeddedDocumentField(Users))
+    productFields=ListField(StringField(max_length=120))
+
+class ScrapingSites(EmbeddedDocument):
+    name=StringField(max_length=120, primary_key=True)
+
 class Shipping(EmbeddedDocument):
     content = StringField()
     name = StringField(max_length=120)
@@ -42,6 +55,7 @@ class AliExProduct(Document):
     reviewCount=StringField(max_length=120)
     orders=StringField(max_length=120)
     rating=StringField(max_length=120)
+    website=StringField(required=True)
     shipping=ListField(EmbeddedDocumentField(Shipping))
     skuItems=ListField(EmbeddedDocumentField(SkuItems))
     websiteProducts=ListField(EmbeddedDocumentField(KpopheartProducts))
