@@ -26,6 +26,7 @@ class Extract(Resource):
 
         extractedProduct=Extract(product,ecomm)
         extractedProduct.website=website
+        extractedProduct.ecomm=ecomm
         extractedProduct.websiteProducts=formatter(website,extractedProduct)
         extractedProduct.save()
         return(json.loads(extractedProduct.to_json()))

@@ -1,6 +1,6 @@
 from flask import Response, request
 from flask_restful import Resource
-from database.models import AliExProduct
+from database.models import EcommProduct
 
 class Product(Resource):
     def get(self,productid,website):
@@ -13,10 +13,9 @@ class Product(Resource):
         return ()
 
 class Products(Resource):
-    def get(self,website):
+    def get(self,website,ecomm):
         #retrieve all products
-        
-        proudcts=AliExProduct.objects(website=website).to_json()
-        return Response(proudcts, mimetype="application/json", status=200)
+        proudcts=EcommProduct.objects(website=website,ecomm=ecomm).to_json()
+        return Response(proudcts.to_json(), mimetype="application/json", status=200)
 
  
