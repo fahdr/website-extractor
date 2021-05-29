@@ -18,7 +18,7 @@ class Websites(Document):
     users=ListField(EmbeddedDocumentField(Users))
     productFields=ListField(StringField(max_length=120))
 
-class ScrapingSites(EmbeddedDocument):
+class ScrapingSites(Document):
     name=StringField(max_length=120, primary_key=True)
 
 class Shipping(EmbeddedDocument):

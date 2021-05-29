@@ -16,7 +16,7 @@ class Products(Resource):
     def get(self,website):
         #retrieve all products
         
-        proudcts=AliExProduct.objects.to_json()
+        proudcts=AliExProduct.objects(website=website).to_json()
         return Response(proudcts, mimetype="application/json", status=200)
 
  
