@@ -4,9 +4,8 @@ from database.models import EcommProduct
 
 class Product(Resource):
     def get(self,productid,website):
-        #retrieve product from db
-        #return info
-        return {'hello': 'world'}
+        product=EcommProduct.objects(skuID=productid,website=website).get().to_json()
+        return Response(product, mimetype="application/json", status=200)
     def put(self):
         #get info
         #save to db for website product
@@ -15,7 +14,7 @@ class Product(Resource):
 class Products(Resource):
     def get(self,website,ecomm):
         #retrieve all products
-        proudcts=EcommProduct.objects(website=website,ecomm=ecomm).to_json()
-        return Response(proudcts, mimetype="application/json", status=200)
+        products=EcommProduct.objects(website=website,ecomm=ecomm).to_json()
+        return Response(products, mimetype="application/json", status=200)
 
  
