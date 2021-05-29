@@ -1,9 +1,10 @@
 from .aliextract import ExtractProduct as aliProduct
 from src.errors import ScraperDoesNotExist
+from database.models import AliExProduct
 
-def Extract(website,ecomm):
+def Extract(product,ecomm):
     if ecomm == 'aliexpress':
-        return aliProduct(website,ecomm)
+        return AliExProduct(**aliProduct(product,ecomm))
     elif ecomm == 'ebay':
         return "empty"
     elif ecomm == 'amazon':

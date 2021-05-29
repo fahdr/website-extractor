@@ -23,7 +23,6 @@ class Extract(Resource):
         except DoesNotExist:
             raise ScraperDoesNotExist
         
-        extractedProduct
 
         extractedProduct=Extract(product,ecomm)
         extractedProduct.website=website
