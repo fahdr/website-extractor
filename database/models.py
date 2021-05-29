@@ -1,7 +1,9 @@
 from enum import unique
 from os import name
 from mongoengine import Document, EmbeddedDocument
+from mongoengine.document import DynamicDocument
 from mongoengine.fields import (
+    DictField,
     ListField,
     StringField,
     IntField,
@@ -32,14 +34,16 @@ class SkuItems(EmbeddedDocument):
     itemImgUrl=StringField()
 
 class WebsiteProducts(EmbeddedDocument):
+    title=StringField()
+    pic=StringField()
+    price=StringField(max_length=120)
+    category=ListField(StringField(max_length=30))  
     name=StringField(max_length=120)
     type=StringField(max_length=120)
     regular_price=IntField(max_length=120)
     description=StringField()
     short_description=StringField()
-    categories=ListField(StringField(max_length=30))
-    images=ListField(StringField(max_length=30))
-    meta = {'allow_inheritance': True}
+    extraFields=DictField()
 
 class KpopheartProducts(EmbeddedDocument):
     team=StringField(max_length=120)
@@ -50,7 +54,7 @@ class KpopheartProducts(EmbeddedDocument):
 
 
 class EcommProduct(Document):
-    skuID=IntField(max_length=120, required=True, primary_key=True)
+    skuID=StringField(max_length=120, required=True)
     ecomm=StringField(required=True)
     title=StringField(required=True)
     reviewCount=StringField(max_length=120)
@@ -59,14 +63,5 @@ class EcommProduct(Document):
     website=StringField(required=True)
     shipping=ListField(EmbeddedDocumentField(Shipping))
     skuItems=ListField(EmbeddedDocumentField(SkuItems))
-    websiteProducts=ListField(EmbeddedDocumentField(KpopheartProducts))
-    
-class DraftAliExProduct(Document):
-    skuID=IntField(max_length=120, required=True, primary_key=True)
-    title=StringField(required=True)
-    reviewCount=StringField(max_length=120)
-    orders=StringField(max_length=120)
-    rating=StringField(max_length=120)
-    shipping=ListField(EmbeddedDocumentField(Shipping))
-    skuItems=ListField(EmbeddedDocumentField(SkuItems))
-    websiteProducts=ListField(EmbeddedDocumentField(KpopheartProducts))
+    websiteProducts=ListField(EmbeddedDocumentField(WebsiteProducts))
+
