@@ -16,6 +16,6 @@ class Products(Resource):
     def get(self,website,ecomm):
         #retrieve all products
         proudcts=EcommProduct.objects(website=website,ecomm=ecomm).to_json()
-        return Response(proudcts.to_json(), mimetype="application/json", status=200)
+        return Response(proudcts, mimetype="application/json", status=200)
 
  

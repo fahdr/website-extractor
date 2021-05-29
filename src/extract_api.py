@@ -1,9 +1,9 @@
 from bson.json_util import loads
 from flask import Response, request
-from database.models import AliExProduct,KpopheartProducts,ScrapingSites,Websites
+from database.models import ScrapingSites,Websites
 from flask_restful import Resource
 from database.db import client
-from extractors.extract_product import Extract
+from extractors.extract_product import ProductExtractor
 from websites.website_formatter import formatter
 from mongoengine.errors import DoesNotExist
 from .errors import ScraperDoesNotExist, WebsiteDoesNotExist
@@ -24,7 +24,7 @@ class Extract(Resource):
             raise ScraperDoesNotExist
         
 
-        extractedProduct=Extract(product,ecomm)
+        extractedProduct=ProductExtractor(product,ecomm)
         extractedProduct.website=website
         extractedProduct.ecomm=ecomm
         extractedProduct.websiteProducts=formatter(website,extractedProduct)
